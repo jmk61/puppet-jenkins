@@ -1,6 +1,6 @@
 {
   "name": "puppet-jenkins",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Joseph Karns",
   "license": "Apache-2.0",
   "summary": "Installs, configures, and manages the Jenkins2 service.",

@@ -1,3 +1,12 @@
+## Supported Releases 0.0.4
+### Summary
+
+Correcting metadata file
+
+### Changes
+
+* Correting metadata.json
+
 ## Supported Releases 0.0.3
 ### Summary
 
