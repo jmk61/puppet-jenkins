@@ -1,6 +1,5 @@
 fixtures:
   repositories:
-    "stdlib": "https://github.com/puppetlabs/puppetlabs-stdlib"
-    "staging": "https://github.com/voxpupuli/puppet-staging"
+    "stdlib": "https://github.com/puppetlabs/puppetlabs-stdlib.git"    
   symlinks:
-    "puppet": "#{source_dir}"
+    "jenkins": "#{source_dir}"

@@ -1,40 +1,30 @@
----
-language: ruby
-
-rvm:
-  - 1.8.7
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
-
-env:
-  matrix:
-    - PUPPET_GEM_VERSION="~> 4.0.0"
-    - PUPPET_GEM_VERSION="~> 4.1.0"
-    - PUPPET_GEM_VERSION="~> 4.2.0"
-    - PUPPET_GEM_VERSION="~> 4.3.0"
-    - PUPPET_GEM_VERSION="~> 4"
-    - PUPPET_GEM_VERSION="~> 4" STRICT_VARIABLES="yes"
-
 sudo: false
-
-script: 'bundle exec metadata-json-lint metadata.json && bundle exec rake validate && bundle exec rake lint && SPEC_OPTS="--format documentation" bundle exec rake spec'
-
+language: ruby
+cache: bundler
+script: "bundle exec rake validate lint spec"
+#Inserting below due to the following issue: https://github.com/travis-ci/travis-ci/issues/3531#issuecomment-88311203
+before_install:
+  - gem update bundler
 matrix:
   fast_finish: true
-  exclude:
-    - rvm: 1.8.7
-      env: PUPPET_GEM_VERSION="~> 4.0.0"
-    - rvm: 1.8.7
-      env: PUPPET_GEM_VERSION="~> 4.1.0"
-    - rvm: 1.8.7
-      env: PUPPET_GEM_VERSION="~> 4.2.0"
-    - rvm: 1.8.7
-      env: PUPPET_GEM_VERSION="~> 4.3.0"
-    - rvm: 1.8.7
-      env: PUPPET_GEM_VERSION="~> 4"
-    - rvm: 1.8.7
-      env: PUPPET_GEM_VERSION="~> 4" STRICT_VARIABLES="yes"
-
+  include:
+  - rvm: 2.3.1
+    dist: trusty
+    env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_set=docker/ubuntu-14.04
+    script: bundle exec rake beaker
+    services: docker
+    sudo: required
+  - rvm: 2.3.1
+    dist: trusty
+    env: PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_set=docker/centos-7
+    script: bundle exec rake beaker
+    services: docker
+    sudo: required
+  - rvm: 2.3.1
+    bundler_args: --without system_tests
+    env: PUPPET_GEM_VERSION="~> 4.0"
+  - rvm: 2.1.9
+    bundler_args: --without system_tests
+    env: PUPPET_GEM_VERSION="~> 4.0"
 notifications:
-  email: false
+email: false
