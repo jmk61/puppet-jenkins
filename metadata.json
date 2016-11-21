@@ -8,7 +8,7 @@
   "project_page": "https://github.com/jmk61/puppet-jenkins",
   "issues_url": "https://github.com/jmk61/puppet-jenkins/issues",
   "dependencies": [
-  	{"name":"puppetlabs/stdlib","version_requirement":">= 3.2.0 < 5.0.0"},
+  	{"name":"puppetlabs/stdlib","version_requirement":">= 3.2.0 < 5.0.0"}
   ],
   "data_provider": "hiera",
   "tags": [ "jenkins" ],  
