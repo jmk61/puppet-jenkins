@@ -6,7 +6,7 @@ class jenkins::proxy inherits jenkins{
 
   if $proxy_host and $proxy_port {
 
-    String $proxy_xml = "${jenkins::localstatedir}/proxy.xml"
+    $proxy_xml = "${jenkins::localstatedir}/proxy.xml"
 
     file { $proxy_xml:
       content => epp('jenkins/proxy.xml.epp'),
