@@ -1,9 +1,9 @@
 <proxy>
-  <name><% $proxy_host -%></name>
-  <port><% $proxy_port -%></port>
-<% if $no_proxy_list {-%>
+  <name><% $jenkins::proxy_host -%></name>
+  <port><% $jenkins::proxy_port -%></port>
+<% if $jenkins::no_proxy_list {-%>
   <noProxyHost>
-    <% $no_proxy_list.each |$no_proxy_item| { -%>
+    <% $jenkins::no_proxy_list.each |$no_proxy_item| { -%>
     <%= $no_proxy_item %>
     <% } -%>
   </noProxyHost>

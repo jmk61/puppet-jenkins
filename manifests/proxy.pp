@@ -4,14 +4,14 @@ class jenkins::proxy inherits jenkins{
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  if ( $jenkins::proxy_host != undef and $jenkins::proxy_port != undef ) {
+  if ( $::proxy_host and $::proxy_port ) {
 
-    $proxy_xml = "${jenkins::localstatedir}/proxy.xml"
+    $proxy_xml = "${::localstatedir}/proxy.xml"
 
-    file { $proxy_xml:
+    file{ $proxy_xml:
       content => epp('jenkins/proxy.xml.epp'),
-      owner   => $jenkins::user,
-      group   => $jenkins::group,
+      owner   => $::user,
+      group   => $::group,
       mode    => '0644'
       
     }

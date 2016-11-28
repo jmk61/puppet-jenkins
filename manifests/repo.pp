@@ -8,7 +8,7 @@ class jenkins::repo inherits jenkins {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
   
-  if ( $jenkins::repo ) {
+  if ( $::repo ) {
     case $::osfamily {
 
       'RedHat', 'Linux': {
