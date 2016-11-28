@@ -8,6 +8,6 @@ jenkins::default_plugins:
 jenkins::localstatedir: '/var/lib/jenkins'
 jenkins::user: 'jenkins'
 jenkins::group: 'jenkins'
-config_hash_defaults:
+jenkins::config_hash_defaults:
   'JAVA_ARGS': '-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false'
   'AJP_PORT': '-1'
