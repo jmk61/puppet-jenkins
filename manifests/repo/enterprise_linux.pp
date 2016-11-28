@@ -6,7 +6,7 @@
 # Fedora operating systems.
 #
 class jenkins::repo::enterprise_linux inherits jenkins {
-  
+
   if $caller_module_name != $module_name {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
