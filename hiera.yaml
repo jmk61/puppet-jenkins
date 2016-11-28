@@ -19,4 +19,4 @@ hierarchy:
     path: "%{facts.os.family}"
 
   - name: "common"
-backend: yaml
+    backend: yaml

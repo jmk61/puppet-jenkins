@@ -1,0 +1,13 @@
+---
+jenkins::lts: true
+jenkins::repo: true
+jenkins::package_name: jenkins
+jenkins::version: 'installed'
+jenkins::default_plugins:
+  - 'credentials'
+jenkins::localstatedir: '/var/lib/jenkins'
+jenkins::user: 'jenkins'
+jenkins::group: 'jenkins'
+config_hash_defaults:
+  'JAVA_ARGS': '-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false'
+  'AJP_PORT': '-1'
