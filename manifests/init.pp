@@ -90,10 +90,10 @@ class jenkins (
   Hash[String, String] $config_hash_defaults,
   Optional[Hash[String, String]] $config_hash,
 ) {
-  
-  $plugin_dir = "${localstatedir}/plugins"
-  $job_dir = "${localstatedir}/jobs"
-  
+
+  $plugin_dir = "${jenkins::localstatedir}/plugins"
+  $job_dir = "${jenkins::localstatedir}/jobs"
+
   if $direct_download {
     $use_repo = false
     $jenkins_package_class = '::jenkins::direct_download'
@@ -106,24 +106,22 @@ class jenkins (
       $use_repo = false
     }
   }
-  
+
   contain $jenkins_package_class
-  
   contain jenkins::config
   contain jenkins::proxy
-  
+
   Class[$jenkins_package_class] ->
   Class['::jenkins::config'] ->
   Class['::jenkins::plugins'] ~>
   Class['::jenkins::service'] ->
   Class['::jenkins::jobs']
-  
-  if $install_java {
+
+  if $jenkins::install_java {
       Class['java'] -> Class[$jenkins_package_class]
   }
 
-  if $use_repo {
+  if $jenkins::use_repo {
       Class['::jenkins::repo'] -> Class['::jenkins::package']
   }
-
 }

@@ -10,7 +10,7 @@ class jenkins::package inherits jenkins {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  package { $::package_name:
-    ensure => $::version,
+  package { $jenkins::package_name:
+    ensure => $jenkins::version,
   }
 }
