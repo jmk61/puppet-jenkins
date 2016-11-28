@@ -18,7 +18,7 @@ class jenkins::direct_download inherits jenkins {
 
   # equivalent to basename() - get the filename
   String $package_file = regsubst($jenkins::direct_download, '(.*?)([^/]+)$', '\2')
-  Stdlib::Absolutepath $local_file = ${jenkins::package_cache_dir}/${package_file}
+  Stdlib::Absolutepath $local_file = "${jenkins::package_cache_dir}/${package_file}"
 
   if $jenkins::version != 'absent' {    
     # make download optional if we are removing...
