@@ -4,7 +4,7 @@ class jenkins::proxy inherits jenkins{
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  if ( $jenkins::proxy_host and $jenkins::proxy_port ) {
+  if ( $jenkins::proxy_host != undef and $jenkins::proxy_port != undef ) {
 
     $proxy_xml = "${jenkins::localstatedir}/proxy.xml"
 
