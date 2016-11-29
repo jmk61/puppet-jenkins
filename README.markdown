@@ -24,12 +24,14 @@ following OS families.
 lts (Boolean)
 -------------
 true: Use LTS verison of jenkins
+
 false: Use the most up to date version of jenkins
 - *Default*: true
 
 repo (Boolean)
 -------------
 true: Install the jenkins repo
+
 false: Do NOT install a repo. This means you'll manage a repo manually outside this module.
        This is for folks that use a custom repo, or the like.
 - *Default*: true
