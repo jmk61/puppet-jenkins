@@ -23,70 +23,85 @@ following OS families.
 
 lts (Boolean)
 -------------
-true: Use LTS verison of jenkins
+true: Use LTS verison of jenkins.
 
-false: Use the most up to date version of jenkins
+false: Use the most up to date version of jenkins.
 - *Default*: true
 
 repo (Boolean)
 -------------
 true: Install the jenkins repo
 
-false: Do NOT install a repo. This means you'll manage a repo manually outside this module.
-       This is for folks that use a custom repo, or the like.
+false: Do NOT install a repo. This means you'll manage a repo manually outside this module. This is for folks that use a custom repo, or the like.
 - *Default*: true
 
+repo_proxy (Optional[String])
+-------------
+If you environment requires a proxy to download packages.
+- *Default*: none
 
+direct_download (Optional[String])
+-------------
+Ignore repostory based package installation and download and install package directly. Don't include to download using your OS package manager.
+- *Default*: none
 
+package_name (String)
+-------------
+Optionally override the package name.
+- *Default*: `jenkins`
 
- (Optional[String]) repo_proxy = undef (Default)
-   If you environment requires a proxy to download packages
+version (String)
+-------------
+`installed`: Will NOT update jenkins to the most recent version.
+`latest`:  Will automatically update the version of jenkins to the current version available via your package manager.
+- *Default*: `installed`
 
- (Optional[String]) direct_download = 'http://...'
-   Ignore repostory based package installation and download and install
-   package directly.  Leave as `undef` (the default) to download using your
-   OS package manager
+package_provider (String)
+-------------
+Which OS Package Manager to use to install jenkins.
+* Redhat: `rpm`
+* Debian: `dpkg`
+- *Default*: OS Dependant
 
- (String) package_name = 'jenkins'
-   Optionally override the package name
+package_cache_dir (Stdlib::Absolutepath)
+-------------
+Optionally specify an alternate location to download packages to when using direct_download.
+- *Default*: `/var/cache/jenkins_pkgs`
 
- (String) version = 'installed' (Default)
-   Will NOT update jenkins to the most recent version.
+proxy_host (String)
+proxy_port (Integer)
+-------------
+If your environment requires a proxy host to download plugins it can be configured here.
+- *Default*: `undef`
 
- (String) version = 'latest'
-   Will automatically update the version of jenkins to the current version
-   available via your package manager.
+no_proxy_list (Array[String])
+-------------
+List of hostname patterns to skip using the proxy.
+* Accepts input as array only.
+* Only effective if "proxy_host" and "proxy_port" are set.
+- *Default*: `undef`
 
- (String) package_provider = OS Dependant (default)
-   Which OS Package Manager to use to install jenkins
-   - Redhat = rpm
-   - Debian = dpkg
+localstatedir (String)
+-------------
+Base path, in the autoconf sense, for jenkins local data including jobs and plugins
+- *Default*: `/var/lib/jenkins`
 
- (Stdlib::Absolutepath) package_cache_dir  = '/var/cache/jenkins_pkgs'
-   Optionally specify an alternate location to download packages to when using
-   direct_download
+user (String)
+-------------
+System user that owns the jenkins master's files
+- *Default*: `jenkins`
 
- (String) proxy_host = undef (default)
- (Integer) proxy_port = undef (default)
-   If your environment requires a proxy host to download plugins it can be configured here
+manage_user (Boolean)
+-------------
+Manage system user that owns the jenkins master's files
+- *Default*: true
 
- (Array[String]) no_proxy_list = undef (default)
-   List of hostname patterns to skip using the proxy.
-   - Accepts input as array only.
-   - Only effective if "proxy_host" and "proxy_port" are set.
+group (String)
+-------------
+System group that owns the jenkins master's files
+- *Default*: `jenkins`
 
- (String) localstatedir = '/var/lib/jenkins' (default)
-   Base path, in the autoconf sense, for jenkins local data including jobs and
-   plugins
-
- (String) user = 'jenkins' (default)
-   System user that owns the jenkins master's files
-
- (Boolean) manage_user = true (default)
-   Manage system user that owns the jenkins master's files
-
- (String) group = 'jenkins' (default)
-   System group that owns the jenkins master's files
-
- (Boolean) manage_group = true (default)
-   Manage system group that owns the jenkins master's files
+manage_group (Boolean)
+-------------
+Manage system group that owns the jenkins master's files
+- *Default*: true
