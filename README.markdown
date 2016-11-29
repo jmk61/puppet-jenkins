@@ -69,9 +69,13 @@ Optionally specify an alternate location to download packages to when using dire
 - *Default*: `/var/cache/jenkins_pkgs`
 
 proxy_host (String)
+-------------
+If your environment requires a proxy to download plugins the host can be configured here.
+- *Default*: `undef`
+
 proxy_port (Integer)
 -------------
-If your environment requires a proxy host to download plugins it can be configured here.
+If your environment requires a proxy to download plugins the port can be configured here.
 - *Default*: `undef`
 
 no_proxy_list (Array[String])
